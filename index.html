@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Protfolio 2</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </head>
 
@@ -16,11 +17,11 @@
         <a href="#" class="logo">Portfolio</a>
         <nav class="navbar">
             <a href="#" style="--i:1" class="active">About</a>
-            <a href="#">Projects</a>
-            <a href="#">Certificates</a>
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Kaggle</a>
+            <a href="#" style="--i:2" >Projects</a>
+            <a href="#" style="--i:3" >Certificates</a>
+            <a href="#" style="--i:4" >GitHub</a>
+            <a href="#" style="--i:5" >LinkedIn</a>
+            <a href="#" style="--i:6" >Kaggle</a>
         </nav>
     </header>
     <section class="home">
@@ -43,14 +44,54 @@
                 <br> and innovative workplace culture.
             </p>
             <div class="home-sci">
-                <a href="#"><i class='bx bx-phone-call'></i></a>
-                <a href="#"><i class='bx bxl-gmail'></i></a>
-                <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-                <a href="#"><i class='bx bxl-whatsapp'></i></a>
+                <a href="#" style="--i:7" ><i class='bx bx-phone-call'></i></a>
+                <a href="#" style="--i:8" ><i class='bx bxl-gmail'></i></a>
+                <a href="#" style="--i:9" ><i class='bx bxl-linkedin-square'></i></a>
+                <a href="#" style="--i:10" ><i class='bx bxl-whatsapp'></i></a>
             </div>
             <a href="#" class="btn-box">More About Me</a>
         </div>
-        <div><img class="profile_pic" class="profile_pic" src= "IMG_5133.JPG"></div>
+        <div><img class="profile_pic" src="IMG_5133.jpg" /></div>
+    </section>
+    <section class = "projects1" id = "projects">
+        <!-- <div class="title"><h1>My Projects</h1></div> -->
+        <div class = "projects1-img"><img src="rock_img.jpg"></div>
+        <div class = "projects1-text">
+            <div class="title"><h1>My Projects</h1></div>
+            <h3>Rock-Paper-Scissors Image Recognition | CNN, python </h3>
+            <p>•	Built and trained Convolutional Neural Networks (CNN) to accurately classify and recognize images, showcasing a strong understanding of neural network architectures. Leveraged Python-based frameworks, including TensorFlow, to achieve a remarkable 89% accuracy in predicting rock, paper, or scissors in image recognition task 
+                <br> •	This project highlights my practical skills in applying deep learning methodologies to solve complex challenges in image processing, emphasizing proficiency computer vision and deep learning</p><br>
+            <h3>Skills:</h3>
+            <p>python, deep learning, data augmentation, keras, tensor flow, CNN’s</p>
+            <br>
+            <a href="#" class="btn-box">GitHub Link</a>
+        </div>
+    </section>
+    <section class="projects2">
+        <div class = "projects2-text">
+            <h3>Sentiment Analysis on Restaurant Reviews | Python, NLP </h3>
+            <p>•	Conducted Sentiment Analysis on Restaurant Reviews using Natural Language Processing (NLP). Leveraged NLP techniques to analyze and classify sentiments expressed in customer reviews, providing valuable insights for business improvement. 
+                <br>•	Successfully implemented machine learning algorithms to categorize reviews as positive, or negative, contributing to a deeper understanding of customer satisfaction</p>
+            <h3>Skills:</h3><p>sentiment analysis, natural language processing, text preprocessing, countvectorizer, nltk, bayes model, python</p>
+            <br>
+            <a href="#" class="btn-box">GitHub Link</a>
+        </div>
+        <div class = "projects2-img"><img src="sentiment analysis.webp"></div>
+    </section>
+    <section class="projects3">
+        <div class = "projects3-img"><img src="churn.webp"></div>
+        <div class = "projects3-text">
+            <h3>Predicting Customer Churn in Banking Using Artificial Neural Networks | ANN, Python</h3>
+            <p>•	Developed an Artificial Neural Network model to predict customer churn in a banking context using historical data. 
+                <br>• The project involved thorough data preprocessing, meticulous model development, and rigorous performance evaluation, resulting in an impressive accuracy of 85%</p>
+            <h3>Skills:</h3><p>deeplearning, ANN, data preprocessing, TensorFlow, keras, python</p>
+            <br>
+            <a href="#" class="btn-box">GitHub Link</a>
+        </div>
+    </section>
+
+
+            
     </section>
     <script src='main.js'></script>
 </body>
