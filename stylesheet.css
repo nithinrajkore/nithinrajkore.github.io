@@ -222,7 +222,7 @@ body {
 .btn-box:hover {
     box-shadow: 0 0 25px white,
         0 0 25px white, 0 0 50px white,
-        0 0 100px white, 0 0 200px white,
+        0 0 100px white, 0 0 200px white
 }
 
 .title{
@@ -241,6 +241,9 @@ body {
     flex-direction: column;
     gap: 2rem;
     padding-bottom: 6rem; */
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1s;
 }
 .projects1-img img{
     width: 450px;
@@ -265,17 +268,15 @@ body {
     /* margin-top: 10%; */
 }
 .projects1-text h1{
-    color: black;
+    color: #3A5F0B;
     font-size: 80px;
     margin-top: 20%;
 }
-.projects1-text h2{
-    font-size: 60px;
-}
+
 .projects1-text h3{
     font-size: 29px;
     font-weight: 600;
-    color: black;
+    color: #3A5F0B;
     line-height: 1.7;
     margin: 15px 0 3px;
     font-style: italic;
@@ -288,16 +289,35 @@ body {
     margin-bottom: 1rem;
 }
 
+.btn-box-link {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #3A5F0B;
+    border-radius: 40px;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0;
+    animation: slideTop 1s ease forwards;
+    animation-delay: 1.3s;
+}
+
+.btn-box-link:hover {
+    box-shadow: 0 0 20px #3A5F0B;
+        /* 0 0 25px #65794a, 0 0 50px #65794a,
+        0 0 100px #65794a, 0 0 200px #65794a; */
+}
 .projects2 {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     align-items: center;
     gap: 1.5rem;
     height: 750px;
-    /* justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 6rem; */
+    opacity: 0;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
 }
 .projects2-text{
     /* line-height: 1.5; */
@@ -305,17 +325,17 @@ body {
     margin-top: 10%;
 }
 .projects2-text h1{
-    color: black;
+    /* color: black; */
     font-size: 80px;
     margin-top: 20%;
 }
-.projects2-text h2{
+/* .projects2-text h2{
     font-size: 60px;
-}
+} */
 .projects2-text h3{
     font-size: 29px;
     font-weight: 600;
-    color: black;
+    color: #3A5F0B;
     line-height: 1.7;
     margin: 15px 0 3px;
     font-style: italic;
@@ -350,10 +370,11 @@ body {
     align-items: center;
     gap: 1.5rem;
     height: 600px;
-    /* justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 6rem; */
+    opacity: 0;
+    animation: slideLeft 1s ease forwards;
+    animation-delay: 1s;
+    margin-bottom: 150px;
+    
 }
 .projects3-img img{
     width: 450px;
@@ -378,17 +399,15 @@ body {
     /* margin-top: 10%; */
 }
 .projects3-text h1{
-    color: black;
+    /* color: black; */
     font-size: 80px;
     margin-top: 20%;
 }
-.projects3-text h2{
-    font-size: 60px;
-}
+
 .projects3-text h3{
     font-size: 29px;
     font-weight: 600;
-    color: black;
+    color: #3A5F0B;
     line-height: 1.7;
     margin: 15px 0 3px;
     font-style: italic;
@@ -399,4 +418,91 @@ body {
     font-size: 20px;
     line-height: 2;
     margin-bottom: 1rem;
+}
+.certs{
+    background-color: #3A5F0B;
+    width: auto;
+    padding-bottom: 75px;
+}
+.certs-text{
+    padding: 15px 5% 0% ;
+    line-height: 25pt;
+    margin-bottom: 2rem;
+}
+.certs-text h1{
+    font-size: 80px;
+    padding-bottom: 75px;
+    padding-top: 100px;
+}
+.certs-text h3{
+    font-size: 32px;
+    padding-bottom: 25px;
+}
+.certs-text p{
+    font-size: 20px;
+    font-style: italic;
+    word-spacing: 25%;
+}
+.btn-box-certs{
+    display: inline-block;
+    padding: 12px 28px;
+    background: #65794a;
+    border-radius: 10% / 50%;
+    font-size: 18px;
+    font-style: italic;
+    color: white;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0;
+    animation: slideTop 1s ease forwards;
+    animation-delay: 1.3s;
+}
+.btn-box-certs:hover{
+    box-shadow: 0 0 25px white;
+}
+.workEx{
+    width: auto;
+    /* margin-top: 5%; */
+    padding-bottom: 75px; 
+    /* padding-left: 80px;  */
+    color: black; 
+}
+.workEx-text{
+    padding: 15px 5% 0% ;
+    line-height: 25pt;
+    margin-bottom: 2rem;
+}
+.workEx-text h1{
+    font-size: 80px;
+    color: #3A5F0B;
+    padding-bottom: 75px;
+    padding-top: 100px;
+}
+.workEx-text h3{
+    color: #3A5F0B;
+    font-size: 32px;
+    padding-bottom: 25px;
+}
+.workEx-text p{
+    font-size: 20px;
+    font-style: italic;
+    /* color: black; */
+    word-spacing: 25%;
+}
+.contact{
+    width: auto;
+    font-size: 20px;
+    padding-left: 90px;
+    line-height: 50pt;
+    padding-bottom: 75px;
+}
+.contact h3:nth-of-type(1){
+    color: #3A5F0B;
+    font-size: 32px;
+}
+.contact h3:nth-of-type(2){
+    color: black;
+    font-size: 20px;
+    padding-left: 50px;
 }
