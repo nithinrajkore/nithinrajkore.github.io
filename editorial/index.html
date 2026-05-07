@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nithin Raj Kore — AI/ML Engineer · Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --red: #d10024;
+  --red-dark: #8b0017;
+  --red-soft: #fdf2f2;
+  --black: #0a0a0a;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --cream: #faf8f4;
+  --rule: #e8e3da;
+  --muted: #6a6a6a;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--red); color: white; }
+
+/* Reading progress bar */
+.progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: var(--red); z-index: 100; transition: width 0.1s;
+}
+
+/* Top masthead */
+.masthead {
+  border-bottom: 1px solid var(--ink);
+  padding: 18px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--paper);
+  position: sticky; top: 0; z-index: 50;
+}
+.masthead-logo {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 12px;
+}
+.masthead-logo::before {
+  content: '';
+  width: 14px; height: 14px;
+  background: var(--red);
+  display: inline-block;
+}
+.masthead-nav {
+  display: flex; gap: 28px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.masthead-nav a { position: relative; padding: 4px 0; transition: color 0.2s; }
+.masthead-nav a:hover { color: var(--red); }
+.masthead-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px; background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.masthead-nav a:hover::after, .masthead-nav a.active::after { transform: scaleX(1); }
+@media (max-width: 800px) {
+  .masthead { padding: 14px 20px; }
+  .masthead-nav { display: none; }
+}
+
+/* Hero */
+.hero {
+  padding: 100px 48px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+}
+.kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+.kicker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 200px;
+}
+.headline {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  margin-bottom: 30px;
+}
+.headline em {
+  font-style: italic;
+  font-weight: 400;
+  position: relative;
+}
+.headline em::after {
+  content: '';
+  position: absolute;
+  bottom: 0.08em; left: 0; right: 0;
+  height: 6px; background: var(--red);
+  z-index: -1;
+  opacity: 0.85;
+}
+.dek {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-style: italic;
+  color: var(--muted);
+  max-width: 700px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.byline strong { color: var(--ink); font-weight: 600; }
+.byline a { color: var(--red); }
+.byline a:hover { text-decoration: underline; }
+
+/* Section */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 30px;
+}
+.section-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.section-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 50px;
+  max-width: 900px;
+}
+.section-title em { font-style: italic; color: var(--red); }
+
+/* About — 2-column editorial spread */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+}
+.about-aside {
+  border-right: 1px solid var(--rule);
+  padding-right: 40px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.about-aside dt {
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+.about-aside dd { margin-bottom: 20px; color: var(--ink); font-weight: 600; }
+.about-body {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.about-body p { margin-bottom: 22px; }
+.about-body p:first-letter {
+  font-family: var(--serif);
+  font-size: 5em;
+  font-weight: 900;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.12em 0 0;
+  color: var(--red);
+}
+.about-body strong { color: var(--ink); font-weight: 700; }
+.pullquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--ink);
+  border-left: 4px solid var(--red);
+  padding: 4px 0 4px 24px;
+  margin: 30px 0;
+}
+@media (max-width: 800px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-aside { border-right: none; border-bottom: 1px solid var(--rule); padding: 0 0 30px; }
+}
+
+/* Skills - editorial list */
+.skills-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+.skill-row {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 30px;
+  align-items: start;
+  transition: padding-left 0.3s ease;
+}
+.skill-row:hover { padding-left: 16px; background: var(--cream); }
+.skill-name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.skill-list-tags {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.skill-list-tags span { color: var(--ink); }
+.skill-list-tags span:not(:last-child)::after { content: ' · '; color: var(--rule); }
+@media (max-width: 800px) {
+  .skills-list { grid-template-columns: 1fr; }
+  .skill-row { grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* Experience — editorial entries */
+.exp-entry {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.exp-entry:last-child { border-bottom: none; }
+.exp-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.exp-meta strong { display: block; color: var(--red); margin-bottom: 4px; }
+.exp-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.exp-org {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.exp-body p { color: var(--ink); margin-bottom: 10px; line-height: 1.7; font-size: 0.97rem; }
+.exp-body strong { color: var(--ink); font-weight: 700; }
+@media (max-width: 800px) {
+  .exp-entry { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* Education */
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.edu-block {
+  padding: 28px 0 28px 28px;
+  border-left: 3px solid var(--red);
+}
+.edu-block .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+.edu-block h3 { font-family: var(--serif); font-weight: 700; font-size: 1.4rem; margin-bottom: 4px; letter-spacing: -0.01em; }
+.edu-block h4 { font-family: var(--sans); font-weight: 500; font-size: 0.95rem; color: var(--muted); margin-bottom: 12px; }
+.edu-block .gpa { font-family: var(--mono); font-size: 12px; color: var(--ink); font-weight: 600; }
+.edu-block p { font-size: 0.95rem; color: var(--muted); margin-top: 12px; }
+@media (max-width: 800px) { .edu-grid { grid-template-columns: 1fr; } }
+
+/* Projects */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+.proj-card {
+  padding: 32px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: flex; flex-direction: column;
+  transition: background 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+.proj-card:hover { background: var(--cream); }
+.proj-card:hover .proj-arrow { transform: translate(4px, -4px); color: var(--red); }
+.proj-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+.proj-card h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.proj-card p { color: var(--muted); font-size: 0.93rem; flex-grow: 1; line-height: 1.6; margin-bottom: 16px; }
+.proj-tags {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink);
+}
+.proj-tags span:not(:last-child)::after { content: ' · '; color: var(--rule); }
+.proj-arrow {
+  position: absolute;
+  top: 32px; right: 32px;
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--muted);
+  transition: transform 0.3s ease, color 0.3s;
+}
+
+/* Contact */
+.contact {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 100px 48px;
+  text-align: center;
+}
+.contact .section-num { color: var(--red); justify-content: center; }
+.contact .section-num::after { background: rgba(255,255,255,0.2); }
+.contact h2 { font-family: var(--serif); font-weight: 900; font-size: clamp(2.4rem, 6vw, 5rem); line-height: 0.95; letter-spacing: -0.03em; max-width: 900px; margin: 0 auto 24px; }
+.contact h2 em { font-style: italic; color: var(--red); }
+.contact p { color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 40px; font-size: 1.05rem; }
+.contact-links {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+.contact-links a {
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.contact-links a:hover { background: var(--red); border-color: var(--red); }
+.contact-links a.primary { background: var(--red); border-color: var(--red); }
+.contact-links a.primary:hover { background: var(--red-dark); }
+
+/* Footer */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  padding: 30px 48px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+@media (max-width: 600px) { .footer { flex-direction: column; gap: 12px; padding: 24px 20px; } }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Back to picker */
+.back-picker {
+  position: fixed; bottom: 24px; left: 24px; z-index: 99;
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  background: var(--ink); color: var(--paper);
+  padding: 10px 18px; border-radius: 100px;
+  border: 1px solid var(--ink);
+  transition: all 0.3s;
+}
+.back-picker:hover { background: var(--red); border-color: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<a href="../themes/" class="back-picker">← All Themes</a>
+
+<header class="masthead">
+  <a href="#top" class="masthead-logo">Nithin Raj Kore</a>
+  <nav class="masthead-nav">
+    <a href="#about" class="active">About</a>
+    <a href="#skills">Practice</a>
+    <a href="#work">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="kicker reveal">Volume 01 · Edition 2026 · AI/ML Engineering</div>
+  <h1 class="headline reveal">Nithin Raj Kore <em>builds</em> intelligent systems that ship.</h1>
+  <p class="dek reveal">An AI/ML engineer designing production-grade Generative AI agents, RAG pipelines, and large-scale data platforms — currently at Key Pixel Software Solutions in San Jose.</p>
+  <div class="byline reveal">
+    <span><strong>San Jose, CA</strong></span>
+    <span>·</span>
+    <span>Open to opportunities</span>
+    <span>·</span>
+    <a href="https://github.com/nithinrajkore" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/nithinrajkore/" target="_blank">LinkedIn</a>
+    <a href="mailto:nithinrajkore1997@gmail.com">Email</a>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-num reveal">§ 01 — Profile</div>
+  <h2 class="section-title reveal">A practitioner at the seam between <em>research</em> and <em>production</em>.</h2>
+  <div class="about-grid">
+    <aside class="about-aside reveal">
+      <dt>Role</dt><dd>AI/ML Engineer</dd>
+      <dt>Based</dt><dd>San Jose, CA</dd>
+      <dt>Experience</dt><dd>5+ years</dd>
+      <dt>Focus</dt><dd>GenAI · LLMs · RAG · MLOps</dd>
+      <dt>Education</dt><dd>M.S. Data Science (4.0)<br/>University at Buffalo</dd>
+      <dt>Open to</dt><dd>Remote · On-site · USA</dd>
+    </aside>
+    <div class="about-body reveal">
+      <p>I'm an AI/ML engineer with five-plus years of experience taking machine-learning systems from notebook to production. My focus is Generative AI, LLM agents, and the data infrastructure required to power them at scale.</p>
+      <div class="pullquote">"I love working at the seam where cutting-edge research meets practical engineering — turning models into products people use."</div>
+      <p>At <strong>Key Pixel</strong>, I architect LLM-driven products using LangChain, LangGraph, RAG, and Azure OpenAI. Earlier at <strong>Infosys</strong>, I shipped large-scale data pipelines on PySpark and GCP that processed millions of records daily. I hold an M.S. in Data Science from the University at Buffalo with a 4.0 GPA.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-num reveal">§ 02 — Practice</div>
+  <h2 class="section-title reveal">The toolkit behind production <em>ML</em>.</h2>
+  <div class="skills-list">
+    <div class="skill-row reveal">
+      <div class="skill-name">Generative AI & LLMs</div>
+      <div class="skill-list-tags"><span>LangChain</span><span>LangGraph</span><span>RAG</span><span>Azure OpenAI</span><span>GPT-4</span><span>Prompt Engineering</span><span>Fine-tuning</span><span>FAISS</span><span>Pinecone</span><span>AI Agents</span></div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-name">Machine Learning</div>
+      <div class="skill-list-tags"><span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>scikit-learn</span><span>MLflow</span><span>XGBoost</span><span>NLP</span><span>Computer Vision</span><span>Reinforcement Learning</span></div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-name">Data Engineering</div>
+      <div class="skill-list-tags"><span>PySpark</span><span>Apache Spark</span><span>Airflow</span><span>Dataflow</span><span>BigQuery</span><span>SQL</span><span>ETL/ELT</span><span>Kafka</span><span>Snowflake</span></div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-name">Cloud & MLOps</div>
+      <div class="skill-list-tags"><span>GCP</span><span>Azure</span><span>AWS</span><span>Vertex AI</span><span>Docker</span><span>Kubernetes</span><span>CI/CD</span><span>Terraform</span></div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-name">Languages & Frameworks</div>
+      <div class="skill-list-tags"><span>Python</span><span>SQL</span><span>Bash</span><span>FastAPI</span><span>Flask</span><span>Streamlit</span></div>
+    </div>
+    <div class="skill-row reveal">
+      <div class="skill-name">Analytics & BI</div>
+      <div class="skill-list-tags"><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Tableau</span><span>Power BI</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="section-num reveal">§ 03 — Experience</div>
+  <h2 class="section-title reveal">Where I've shipped <em>impact</em>.</h2>
+  <div class="exp-entry reveal">
+    <div class="exp-meta"><strong>Feb 2024 — Present</strong>San Jose, CA</div>
+    <div>
+      <h3 class="exp-title">ML / AI Engineer</h3>
+      <div class="exp-org">Key Pixel Software Solutions</div>
+      <div class="exp-body">
+        <p>Architected and shipped <strong>LLM-powered agents</strong> using LangChain and LangGraph for enterprise document intelligence and workflow automation.</p>
+        <p>Built <strong>retrieval-augmented generation (RAG) pipelines</strong> on Azure OpenAI with FAISS/Pinecone vector stores — improving answer accuracy and grounding.</p>
+        <p>Engineered prompt-engineering and fine-tuning workflows for GPT-4–class models; created evaluation harnesses for hallucination, latency, and cost.</p>
+      </div>
+    </div>
+  </div>
+  <div class="exp-entry reveal">
+    <div class="exp-meta"><strong>Sep 2019 — May 2022</strong>Hyderabad, India</div>
+    <div>
+      <h3 class="exp-title">Senior Data Engineer · Data Engineer</h3>
+      <div class="exp-org">Infosys</div>
+      <div class="exp-body">
+        <p>Built and operated <strong>large-scale data pipelines</strong> on PySpark, Apache Spark, and BigQuery processing millions of records daily.</p>
+        <p>Designed dimensional models, ETL/ELT workflows, and orchestration on GCP Dataflow and Airflow.</p>
+        <p>Owned production reliability and performance — tuning Spark jobs, optimizing queries, and reducing pipeline runtime and cloud spend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="section-num reveal">§ 04 — Education</div>
+  <h2 class="section-title reveal">Where I learned the <em>fundamentals</em>.</h2>
+  <div class="edu-grid">
+    <div class="edu-block reveal">
+      <div class="label">Master's Degree</div>
+      <h3>M.S. in Data Science</h3>
+      <h4>University at Buffalo, SUNY</h4>
+      <div class="gpa">GPA 4.0 / 4.0</div>
+      <p>Advanced coursework in machine learning, deep learning, statistical modeling, NLP, and big-data analytics.</p>
+    </div>
+    <div class="edu-block reveal">
+      <div class="label">Bachelor's Degree</div>
+      <h3>B.E. Electronics & Communication</h3>
+      <h4>Vasavi College of Engineering</h4>
+      <div class="gpa">Engineering Foundation</div>
+      <p>Mathematics, signal processing, programming, and systems engineering — the bedrock for an ML career.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-num reveal">§ 05 — Selected Projects</div>
+  <h2 class="section-title reveal">Things I've <em>built</em>.</h2>
+  <div class="proj-grid">
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/PD_AI_AGENT" target="_blank">
+      <div class="proj-tag">Featured · AI Agent</div>
+      <h3>PD AI Agent</h3>
+      <p>AI agent for orchestrating open-source semiconductor physical-design flows — automating EDA tooling with LLM-driven planning.</p>
+      <div class="proj-tags"><span>Python</span><span>LLM Agents</span><span>EDA</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/PDF-DataAnalyzer" target="_blank">
+      <div class="proj-tag">RAG · GenAI</div>
+      <h3>PDF Data Analyzer</h3>
+      <p>RAG-based PDF question-answering app using Google Gemini, LangChain, FAISS, and Streamlit.</p>
+      <div class="proj-tags"><span>LangChain</span><span>Gemini</span><span>FAISS</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/healthcentral-prototype" target="_blank">
+      <div class="proj-tag">Conversational AI</div>
+      <h3>HealthCentral Hub</h3>
+      <p>Multi-source BI prototype with conversational AI agent unifying Sigma, Adobe Analytics, and DCM.</p>
+      <div class="proj-tags"><span>Python</span><span>BI</span><span>AI</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/Deep-Learning" target="_blank">
+      <div class="proj-tag">Deep Learning</div>
+      <h3>Deep Learning Suite</h3>
+      <p>ANN and CNN implementations: bank-churn, heart-failure, cat/dog classifier, and rock-paper-scissors detection.</p>
+      <div class="proj-tags"><span>TensorFlow</span><span>Keras</span><span>CNN</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/NetflixStockPricePrediction" target="_blank">
+      <div class="proj-tag">DL · MLOps</div>
+      <h3>Netflix Stock Forecasting</h3>
+      <p>End-to-end ANN-based forecasting with a deployed Flask app — full pipeline from data to live inference.</p>
+      <div class="proj-tags"><span>ANN</span><span>Flask</span><span>End-to-End</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/Classification-Models" target="_blank">
+      <div class="proj-tag">Classical ML</div>
+      <h3>Classification Benchmarks</h3>
+      <p>7 classification algorithms benchmarked side-by-side — Logistic Regression, SVM, KNN, and more.</p>
+      <div class="proj-tags"><span>scikit-learn</span><span>Benchmarking</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/NLP" target="_blank">
+      <div class="proj-tag">NLP</div>
+      <h3>NLP — Sentiment Analysis</h3>
+      <p>Sentiment-analysis pipeline using Bag-of-Words and Gaussian Naive Bayes on 1,000 restaurant reviews.</p>
+      <div class="proj-tags"><span>NLTK</span><span>BoW</span><span>Naive Bayes</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore/Reinforcement-Learning" target="_blank">
+      <div class="proj-tag">Reinforcement Learning</div>
+      <h3>Multi-Armed Bandit (UCB)</h3>
+      <p>Upper Confidence Bound algorithm for ad click-through-rate optimization across 10,000 rounds.</p>
+      <div class="proj-tags"><span>RL</span><span>UCB</span><span>Optimization</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+    <a class="proj-card reveal" href="https://github.com/nithinrajkore" target="_blank">
+      <div class="proj-tag">More on GitHub</div>
+      <h3>See all 13 repositories</h3>
+      <p>Regression models, clustering, association rules, data preprocessing pipelines, and more.</p>
+      <div class="proj-tags"><span>github.com/nithinrajkore</span></div>
+      <span class="proj-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-num reveal">§ 06 — Contact</div>
+  <h2 class="reveal">Let's build something <em>remarkable</em>.</h2>
+  <p class="reveal">Open to AI/ML Engineer, LLM Engineer, Generative AI, and Applied AI roles — remote or on-site, anywhere in the USA.</p>
+  <div class="contact-links reveal">
+    <a class="primary" href="mailto:nithinrajkore1997@gmail.com">Send Email</a>
+    <a href="https://www.linkedin.com/in/nithinrajkore/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/nithinrajkore" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>© <span id="year"></span> Nithin Raj Kore</div>
+  <div>Editorial · No. 02 · 2026</div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const progress = document.getElementById('progress');
+document.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const s = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  progress.style.width = (s * 100) + '%';
+}, { passive: true });
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+const sections = ['about','skills','work','projects','contact'];
+const navLinks = document.querySelectorAll('.masthead-nav a');
+const navObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach((a, i) => {
+        const map = ['about','skills','work','projects','contact'];
+        a.classList.toggle('active', map[i] === e.target.id);
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
+</script>
+</body>
+</html>

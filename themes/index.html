@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pick a Theme — Nithin Raj Kore Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:wght@400;700;900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --red: #ff1744;
+  --red-dark: #b71c1c;
+  --black: #0a0a0a;
+  --gray: #888;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--black);
+  color: white;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--red); color: white; }
+
+/* Background glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,23,68,0.18), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(183,28,28,0.15), transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,23,68,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,23,68,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+}
+
+.wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+}
+
+.header { text-align: center; margin-bottom: 60px; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding: 6px 14px;
+  background: rgba(255,23,68,0.1);
+  border: 1px solid rgba(255,23,68,0.3);
+  border-radius: 100px;
+}
+.eyebrow .dot {
+  width: 8px; height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--red);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.gradient-text {
+  background: linear-gradient(135deg, #ff5470 0%, #ff1744 50%, #b71c1c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle {
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.theme-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(20,20,20,0.85), rgba(10,10,10,0.95));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+.theme-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255,23,68,0.4);
+  box-shadow: 0 30px 70px -20px rgba(255,23,68,0.3);
+}
+.theme-card.active-theme {
+  border-color: rgba(255,23,68,0.5);
+  box-shadow: 0 0 0 1px rgba(255,23,68,0.3), 0 20px 60px -20px rgba(255,23,68,0.4);
+}
+.active-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 5;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  border-radius: 100px;
+  box-shadow: 0 6px 20px -4px rgba(255,23,68,0.6);
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.theme-preview {
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* CRIMSON preview */
+.preview-crimson {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,23,68,0.4), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(183,28,28,0.3), transparent 50%),
+    #0a0a0a;
+}
+.preview-crimson-light {
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,23,68,0.18), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,82,112,0.15), transparent 50%),
+    #faf8f4;
+  color: #0a0a0a;
+}
+.preview-crimson-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,23,68,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,23,68,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.preview-crimson-light .mock-title {
+  position: absolute;
+  top: 50%; left: 24px;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0a0a0a;
+}
+.preview-crimson-light .mock-title .red {
+  background: linear-gradient(135deg, #ff1744, #d10024, #8b0017);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.preview-crimson-light .mock-orb {
+  position: absolute;
+  top: 50%; right: 30px;
+  transform: translateY(-50%);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  box-shadow: 0 0 50px rgba(255,23,68,0.4);
+}
+.preview-crimson-light .mock-orb::after {
+  content: 'AI';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 22px;
+}
+.preview-crimson-light .mock-ring {
+  position: absolute;
+  top: 50%; right: 30px;
+  transform: translateY(-50%);
+  width: 140px; height: 140px;
+  border: 1px solid rgba(255,23,68,0.4);
+  border-radius: 50%;
+  margin: -30px -30px 0 0;
+  animation: spin 14s linear infinite;
+}
+.preview-crimson-light .mock-bottom {
+  position: absolute;
+  bottom: 18px; left: 24px; right: 24px;
+  display: flex;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #6a6a6a;
+}
+.preview-crimson-light .mock-tag {
+  padding: 3px 8px;
+  background: rgba(255,23,68,0.08);
+  border: 1px solid rgba(255,23,68,0.3);
+  border-radius: 100px;
+  color: #d10024;
+}
+.preview-crimson::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,23,68,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,23,68,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.preview-crimson .mock-title {
+  position: absolute;
+  top: 50%; left: 24px;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.preview-crimson .mock-title .red {
+  background: linear-gradient(135deg, #ff5470, #ff1744, #b71c1c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.preview-crimson .mock-orb {
+  position: absolute;
+  top: 50%; right: 30px;
+  transform: translateY(-50%);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  box-shadow: 0 0 50px rgba(255,23,68,0.6);
+}
+.preview-crimson .mock-orb::after {
+  content: 'AI';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 22px;
+}
+.preview-crimson .mock-ring {
+  position: absolute;
+  top: 50%; right: 30px;
+  transform: translateY(-50%);
+  width: 140px; height: 140px;
+  border: 1px solid rgba(255,23,68,0.4);
+  border-radius: 50%;
+  margin: -30px -30px 0 0;
+  animation: spin 14s linear infinite;
+}
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+.preview-crimson .mock-bottom {
+  position: absolute;
+  bottom: 18px; left: 24px; right: 24px;
+  display: flex;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: #aaa;
+}
+.preview-crimson .mock-tag {
+  padding: 3px 8px;
+  background: rgba(255,23,68,0.15);
+  border: 1px solid rgba(255,23,68,0.3);
+  border-radius: 100px;
+  color: #ff5470;
+}
+
+/* EDITORIAL preview */
+.preview-editorial {
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.preview-editorial .mock-rule {
+  height: 1px;
+  background: #0a0a0a;
+  margin-bottom: 14px;
+}
+.preview-editorial .mock-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d10024;
+  margin-bottom: 18px;
+}
+.preview-editorial .mock-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 900;
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+  color: #0a0a0a;
+}
+.preview-editorial .mock-title em {
+  font-style: italic;
+  font-weight: 400;
+  position: relative;
+}
+.preview-editorial .mock-title em::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 4px;
+  background: #d10024;
+  z-index: -1;
+}
+.preview-editorial .mock-byline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #6a6a6a;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #e8e3da;
+}
+
+/* CYBERPUNK preview */
+.preview-cyber {
+  background: #050507;
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  padding: 16px;
+  overflow: hidden;
+}
+.preview-cyber::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,0,60,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,60,0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+}
+.preview-cyber::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(0,0,0,0.2) 3px, transparent 4px);
+  pointer-events: none;
+}
+.preview-cyber .mock-window {
+  position: relative;
+  z-index: 1;
+  background: rgba(15,15,20,0.9);
+  border: 1px solid rgba(255,0,60,0.3);
+  border-radius: 4px;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.preview-cyber .mock-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #15151c;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255,0,60,0.3);
+  font-size: 9px;
+  color: #888;
+}
+.preview-cyber .mock-bar .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.preview-cyber .mock-bar .dot.r { background: #ff003c; }
+.preview-cyber .mock-bar .dot.y { background: #ffaa00; }
+.preview-cyber .mock-bar .dot.g { background: #00ff9c; }
+.preview-cyber .mock-content {
+  padding: 14px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.preview-cyber .mock-prompt {
+  color: #00ff9c;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+.preview-cyber .mock-prompt::before { content: '$ '; color: #ff003c; }
+.preview-cyber .mock-title {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(255,0,60,0.5);
+}
+.preview-cyber .mock-title .red { color: #ff003c; }
+.preview-cyber .mock-stat-row {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+.preview-cyber .mock-cell {
+  flex: 1;
+  border: 1px solid rgba(255,0,60,0.3);
+  padding: 5px 8px;
+  background: rgba(255,0,60,0.04);
+  font-size: 8px;
+}
+.preview-cyber .mock-cell .label { color: #777; text-transform: uppercase; }
+.preview-cyber .mock-cell .val { color: #ff003c; font-weight: 700; }
+.preview-cyber .mock-cell .val.green { color: #00ff9c; }
+
+/* Theme info */
+.theme-info {
+  padding: 24px 26px 26px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.theme-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 0.15em;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.theme-card h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.theme-tagline {
+  color: #b0b0b0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.theme-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+.theme-feat {
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 100px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #c0c0c0;
+}
+.theme-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  flex: 1;
+  justify-content: center;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #ff1744, #b71c1c);
+  color: white;
+  box-shadow: 0 8px 30px -8px rgba(255,23,68,0.5);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px -8px rgba(255,23,68,0.7);
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+}
+.btn-ghost:hover {
+  background: rgba(255,23,68,0.1);
+  border-color: rgba(255,23,68,0.4);
+}
+
+/* Help section */
+.help {
+  text-align: center;
+  padding: 32px;
+  background: linear-gradient(135deg, rgba(255,23,68,0.06), rgba(10,10,10,0.6));
+  border: 1px solid rgba(255,23,68,0.2);
+  border-radius: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.help h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+.help p {
+  color: #b0b0b0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.help code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #ff5470;
+  border: 1px solid rgba(255,23,68,0.2);
+}
+
+@media (max-width: 700px) {
+  .wrap { padding: 40px 20px 60px; }
+  .header { margin-bottom: 40px; }
+  .theme-preview { height: 220px; }
+  .preview-crimson .mock-title { font-size: 1.8rem; }
+  .theme-info { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="header">
+    <div class="eyebrow"><span class="dot"></span> Theme Picker</div>
+    <h1>Pick the look. <span class="gradient-text">Then we ship it.</span></h1>
+    <p class="subtitle">Three full portfolios with all your real content. Click any preview to open the full site, then pick your favorite — or close the tab and come back later.</p>
+  </header>
+
+  <div class="themes">
+
+    <!-- Crimson Noir -->
+    <div class="theme-card">
+      <a href="../crimson/" class="theme-preview preview-crimson">
+        <div class="mock-ring"></div>
+        <div class="mock-orb"></div>
+        <div class="mock-title">NITHIN<br/><span class="red">RAJ KORE</span></div>
+        <div class="mock-bottom">
+          <span class="mock-tag">LLM</span>
+          <span class="mock-tag">RAG</span>
+          <span class="mock-tag">PYTHON</span>
+        </div>
+      </a>
+      <div class="theme-info">
+        <div class="theme-num">// THEME 01</div>
+        <h3>Crimson Noir</h3>
+        <p class="theme-tagline">Dark, cinematic, glassmorphic. Custom red-glow cursor, particle canvas, command palette, and 3D tilt cards. The most interactive of the bunch.</p>
+        <div class="theme-features">
+          <span class="theme-feat">Custom cursor</span>
+          <span class="theme-feat">Particles</span>
+          <span class="theme-feat">⌘K palette</span>
+          <span class="theme-feat">3D tilt</span>
+          <span class="theme-feat">Animated counters</span>
+        </div>
+        <div class="theme-actions">
+          <a href="../crimson/" class="btn btn-primary">Open ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crimson Light -->
+    <div class="theme-card">
+      <a href="../crimson-light/" class="theme-preview preview-crimson-light">
+        <div class="mock-ring"></div>
+        <div class="mock-orb"></div>
+        <div class="mock-title">NITHIN<br/><span class="red">RAJ KORE</span></div>
+        <div class="mock-bottom">
+          <span class="mock-tag">LLM</span>
+          <span class="mock-tag">RAG</span>
+          <span class="mock-tag">PYTHON</span>
+        </div>
+      </a>
+      <div class="theme-info">
+        <div class="theme-num">// THEME 02</div>
+        <h3>Crimson Light</h3>
+        <p class="theme-tagline">Same interactive layout as Crimson Noir — particle canvas, ⌘K palette, 3D tilt — but on a clean white/cream background. Light theme of the same site.</p>
+        <div class="theme-features">
+          <span class="theme-feat">Custom cursor</span>
+          <span class="theme-feat">Particles</span>
+          <span class="theme-feat">⌘K palette</span>
+          <span class="theme-feat">3D tilt</span>
+          <span class="theme-feat">White/cream bg</span>
+        </div>
+        <div class="theme-actions">
+          <a href="../crimson-light/" class="btn btn-primary">Open ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial — ACTIVE -->
+    <div class="theme-card active-theme">
+      <a href="../" class="theme-preview preview-editorial">
+        <div class="active-badge">● LIVE</div>
+        <div class="mock-rule"></div>
+        <div class="mock-eyebrow">VOL.01 · 2026 · AI/ML</div>
+        <div class="mock-title">Nithin Raj Kore<br/><em>builds</em> systems.</div>
+        <div class="mock-byline">— Five years building intelligent ML & AI products.</div>
+      </a>
+      <div class="theme-info">
+        <div class="theme-num">// THEME 03 · CURRENTLY DEPLOYED</div>
+        <h3>Minimal Editorial</h3>
+        <p class="theme-tagline">Swiss-design, NYT-style. White paper, serif headlines, generous whitespace, red as a single accent. Quiet confidence — the kind recruiters and execs love.</p>
+        <div class="theme-features">
+          <span class="theme-feat">Serif type</span>
+          <span class="theme-feat">White bg</span>
+          <span class="theme-feat">Pull-quotes</span>
+          <span class="theme-feat">Drop caps</span>
+          <span class="theme-feat">Magazine grid</span>
+        </div>
+        <div class="theme-actions">
+          <a href="../" class="btn btn-primary">Open ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cyberpunk -->
+    <div class="theme-card">
+      <a href="../cyberpunk/" class="theme-preview preview-cyber">
+        <div class="mock-window">
+          <div class="mock-bar">
+            <span class="dot r"></span>
+            <span class="dot y"></span>
+            <span class="dot g"></span>
+            <span style="margin-left: 8px;">~/portfolio — bash</span>
+          </div>
+          <div class="mock-content">
+            <div class="mock-prompt">whoami</div>
+            <div class="mock-title">NITHIN<br/><span class="red">RAJ KORE</span></div>
+            <div class="mock-stat-row">
+              <div class="mock-cell"><div class="label">STATUS</div><div class="val green">● ONLINE</div></div>
+              <div class="mock-cell"><div class="label">ROLE</div><div class="val">ML/AI</div></div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="theme-info">
+        <div class="theme-num">// THEME 04</div>
+        <h3>Cyberpunk Terminal</h3>
+        <p class="theme-tagline">Mono fonts, terminal windows, CRT scanlines, glitch text effects, ASCII art. Stands out instantly — perfect if you want to signal "engineer who ships."</p>
+        <div class="theme-features">
+          <span class="theme-feat">CRT scanlines</span>
+          <span class="theme-feat">Glitch text</span>
+          <span class="theme-feat">Terminal UI</span>
+          <span class="theme-feat">ASCII art</span>
+          <span class="theme-feat">Mono only</span>
+        </div>
+        <div class="theme-actions">
+          <a href="../cyberpunk/" class="btn btn-primary">Open ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="help">
+    <h3>Currently live: <span style="color:#ff5470">Minimal Editorial</span></h3>
+    <p>The Editorial theme is the deployed site at the root URL. The other three (Crimson Noir, Crimson Light, Cyberpunk Terminal) live in subfolders and remain accessible — handy if you want to switch later or share an alternate look with someone.</p>
+    <p style="margin-bottom: 0; font-size: 0.85rem;">All four are kept in <code>~/Documents/portfolio/</code>. To swap which one is live, just say which theme you want and I'll re-route everything.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
