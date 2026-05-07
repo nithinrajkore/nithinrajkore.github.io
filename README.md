@@ -1,6 +1,6 @@
 # Nithin Raj Kore — Portfolio
 
-Personal portfolio site. Vanilla HTML/CSS/JS, no build step.
+Personal portfolio site. 
 
 ## Currently live
 
@@ -57,12 +57,6 @@ git push -u origin main
 ```
 
 In ~1 minute the live URL will be **https://nithinrajkore.github.io**.
-
-## Switching themes later
-
-If you want to swap to one of the other themes (e.g. Crimson Noir), just ask. The mechanical change is: copy `crimson/index.html` → `index.html`, copy any `styles.css` / `script.js` it depends on into root, update the `View other themes` link, push.
-
-## Customize content
 
 - All copy lives in `index.html` (or whichever theme folder you're editing)
 - Editorial: red accent is `--red: #d10024`, swap inside the `<style>` block
